@@ -1,13 +1,13 @@
-import React, {Component} from 'react';
-export default class StudentSearch extends Component{
-    
+import React, { Component } from 'react'
+export default class StudentSearch extends Component {
+
     handleSelect(event) {
-        let {setStudentGenderType} = this.props;
+        let {setStudentGenderType } = this.props;
         setStudentGenderType(event.target.value);
     }
 
-    render(){
-        return(
+    render() {
+              return(
 		 	          <div className="container text-center">
                     <form className="form-horizontal">
                       <div className="form-group">

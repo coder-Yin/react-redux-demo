@@ -20,3 +20,10 @@ export function setStudentGenderType(config) {
         config
     }
 }
+
+export function setEnter(config) {
+    return {
+        type: actionTypes.SET_ENTER,
+        config
+    }
+}

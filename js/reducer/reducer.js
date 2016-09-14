@@ -17,3 +17,12 @@ export function studentGenderType(state = '0', action) {
             return state;
     }
 }
+
+export function enter(state = true, action) {
+    switch (action.type) {
+        case actionTypes.SET_ENTER:
+            return action.config;
+        default:
+            return state;
+    }
+}
