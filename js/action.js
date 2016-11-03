@@ -10,8 +10,11 @@ export function setStudentList(config) {
 
 export function getStudentList() {
 	return dispatch => {
-        return dispatch(setStudentList(model.getStudentList()));
-    }
+    return model.getStudentList().then(response => {
+			let studentList = response.data.list;
+      dispatch(setStudentList(studentList));
+    });
+	};
 }
 
 export function setStudentGenderType(config) {
