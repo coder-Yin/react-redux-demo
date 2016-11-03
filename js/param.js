@@ -2,9 +2,9 @@ import bindActions from './bindActions'
 
 export function mapStateToProps(state) {
 
-  let { studentList, studentGenderType, enter } = state
+  let { studentList, studentGenderType, enter } = state;
 
-  let { setStudentGenderType, getStudentList, setEnter } = bindActions
+  let { setStudentGenderType, getStudentList, setEnter, addStudent } = bindActions;
 
   const filterStudentList = (list, filter) => {
 
@@ -34,16 +34,15 @@ export function mapStateToProps(state) {
 
   return {
     getStudentList,
-    studentAnimateInfo: {
-      enter,
-      toggleEnter
+    studentAddInfo: {
+      addStudent
     },
     studentSearchInfo: {
       setStudentGenderType,
       studentGenderType
     },
     studentListInfo:  {
-      studentList: filterStudentList(studentList,studentGenderType)
+      studentList: filterStudentList(studentList, studentGenderType)
     }
   }
 }

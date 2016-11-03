@@ -26,6 +26,10 @@ app.get("/sta/css/bootstrap.min.css", function(req, res) {
 app.get("/sta/css/animate.css", function(req, res) {
   res.sendFile(__dirname + '/sta/css/animate.css')
 })
+
+app.get("/sta/css/common.css", function(req, res) {
+  res.sendFile(__dirname + '/sta/css/common.css')
+})
 // app.use('/sta',express.static(path.join(__dirname, 'sta')));
 
 app.listen(port, function(error) {

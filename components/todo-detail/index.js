@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import StudentSearch from '../student-search';
-// import StudentAdd from '../student-add'
+import StudentAdd from '../student-add';
 import StudentList from '../student-list';
 // import StudentAnimate from '../student-animate'
 
@@ -12,10 +12,11 @@ class TodoDetail extends Component {
     }
 
     render() {
-      let { studentListInfo, studentSearchInfo, studentAnimateInfo } = this.props
+      let { studentListInfo, studentSearchInfo, studentAddInfo } = this.props;
       return (
         <div>
           <StudentSearch {...studentSearchInfo} />
+          <StudentAdd {...studentAddInfo} />
           <StudentList {...studentListInfo} />
         </div>
       )

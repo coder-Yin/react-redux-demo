@@ -1,32 +1,54 @@
 import React, {Component} from 'react';
+
 export default class StudentAdd extends Component{
     // constructor(props){
     //     super(props);
     // }
 
+    onAddStudent(event) {
+      let {addStudent} = this.props;
+      let stuNo = this.refs.stuNo.value,
+          stuName = this.refs.stuName.value,
+          gender = this.refs.stuGender.value;
+
+      if ( stuNo && stuName) {
+        addStudent({stuNo, stuName, gender});
+        event.preventDefault();
+      }
+    }
+
     render(){
         return(
-		 	<div className="container">
-			 	 <form className="form-horizontal">
-				  <div className="form-group">
-				    <label for="inputEmail3" className="col-sm-2 control-label">学号：</label>
-				    <div className="col-sm-10">
-				      <input type="text" className="form-control" id="stuNo" placeholder="请输入学生学号" />
-				    </div>
-				  </div>
-				  <div className="form-group">
-				    <label for="inputPassword3" className="col-sm-2 control-label">姓名：</label>
-				    <div className="col-sm-10">
-				      <input type="text" className="form-control" id="stuName" placeholder="请输入学生姓名" />
-				    </div>
-				  </div>
-				  <div className="form-group">
-				    <div className="col-sm-offset-2 col-sm-10">
-				      <button type="submit" className="btn btn-primary">添 加</button>
-				    </div>
-				  </div>
-				</form>
-    		</div>
+    		 	<div className="container bg-info pt10">
+    			 	 <form className="form-horizontal">
+    				  <div className="form-group">
+    				    <label htmlFor="stuNo" className="col-sm-2 control-label">学号：</label>
+    				    <div className="col-sm-10">
+    				      <input type="number" className="form-control" placeholder="请输入学生学号" ref="stuNo" required />
+    				    </div>
+    				  </div>
+    				  <div className="form-group">
+    				    <label htmlFor="stuName" className="col-sm-2 control-label">姓名：</label>
+    				    <div className="col-sm-10">
+    				      <input type="text" className="form-control" placeholder="请输入学生姓名" ref="stuName" required />
+    				    </div>
+    				  </div>
+              <div className="form-group">
+    				    <label htmlFor="stuGender" className="col-sm-2 control-label">性别：</label>
+    				    <div className="col-sm-10">
+                  <select className="form-control" ref="stuGender">
+                    <option value="male">男</option>
+                    <option value="female">女</option>
+                  </select>
+    				    </div>
+    				  </div>
+    				  <div className="form-group">
+    				    <div className="col-sm-offset-2 col-sm-10">
+    				      <button type="submit" className="btn btn-primary" onClick={this.onAddStudent.bind(this)}>添 加</button>
+    				    </div>
+    				  </div>
+    				</form>
+        		</div>
 	    )
 
     }

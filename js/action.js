@@ -3,8 +3,8 @@ import * as model from './model';
 
 export function setStudentList(config) {
 	return {
-        type: actionTypes.SET_STUDENTLIST,
-        config
+      type: actionTypes.SET_STUDENTLIST,
+      config
     }
 }
 
@@ -18,15 +18,22 @@ export function getStudentList() {
 }
 
 export function setStudentGenderType(config) {
-    return {
-        type: actionTypes.SET_STUDENTGENDERTYPE,
-        config
-    }
+  return {
+    type: actionTypes.SET_STUDENTGENDERTYPE,
+    config
+  }
 }
 
 export function setEnter(config) {
-    return {
-        type: actionTypes.SET_ENTER,
-        config
-    }
+  return {
+    type: actionTypes.SET_ENTER,
+    config
+  }
+}
+
+export function addStudent(config) {
+	return {
+		type: actionTypes.ADD_STUDENT,
+		config
+	}
 }
