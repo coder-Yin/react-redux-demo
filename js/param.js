@@ -2,34 +2,28 @@ import bindActions from './bindActions'
 
 export function mapStateToProps(state) {
 
-  let { studentList, studentGenderType, enter } = state;
+  let { studentList, studentGenderType, isLoading } = state;
 
   let { setStudentGenderType, getStudentList, setEnter, addStudent } = bindActions;
 
   const filterStudentList = (list, filter) => {
 
-    list = list ? list : []
+    list = list ? list : [];
 
     switch (filter) {
-      case '0':
-        return list
       case '1':
         list = list.filter(item => {
           return item.gender === 'male'
-        })
-        return list
+        });
+        break;
       case '2':
         list = list.filter(item => {
           return item.gender === 'female'
-        })
-        return list
-      default:
-        return list
+        });
+        break;
     }
-  }
 
-  const toggleEnter = () => {
-    setEnter(!enter);
+    return list;
   }
 
   return {
@@ -42,6 +36,7 @@ export function mapStateToProps(state) {
       studentGenderType
     },
     studentListInfo:  {
+      isLoading,
       studentList: filterStudentList(studentList, studentGenderType)
     }
   }

@@ -13,6 +13,7 @@ export function getStudentList() {
     return model.getStudentList().then(response => {
 			let studentList = response.data.list;
       dispatch(setStudentList(studentList));
+			dispatch(setIsLoading(false));
     });
 	};
 }
@@ -34,6 +35,13 @@ export function setEnter(config) {
 export function addStudent(config) {
 	return {
 		type: actionTypes.ADD_STUDENT,
+		config
+	}
+}
+
+export function setIsLoading(config) {
+	return {
+		type: actionTypes.SET_ISLOADING,
 		config
 	}
 }

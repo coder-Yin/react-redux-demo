@@ -33,3 +33,12 @@ export function enter(state = true, action) {
       return state;
   }
 }
+
+export function isLoading(state = true, action) {
+  switch (action.type) {
+    case actionTypes.SET_ISLOADING:
+      return action.config;
+    default:
+      return state;
+  }
+}

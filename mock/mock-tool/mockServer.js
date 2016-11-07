@@ -8,7 +8,7 @@ class MockServer {
     init() {
         //模拟接口请求时间
         Mock.setup({
-            timeout: '200-1000'
+            timeout: '2000-3000'
         });
     }
     start() {
