@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import StudentSearch from '../student-search';
 import StudentAdd from '../student-add';
 import StudentList from '../student-list';
-// import StudentAnimate from '../student-animate'
+// import StudentAnimate from '../student-animate';
 
 class TodoDetail extends Component {
 

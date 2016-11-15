@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import Loading from '../loading';
+import './index.scss?p6';
 
 export default class StudentList extends Component{
 

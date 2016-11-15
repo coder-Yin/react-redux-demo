@@ -34,6 +34,16 @@ module.exports = {
         test: /\.css?$/,
         loaders: ['style', 'raw'],
         include: __dirname
+      },
+      {
+        test: /\.scss$/,
+        loaders: ['style', 'css', 'postcss', 'px2rem?remUnit=32', 'sass'],
+        include: __dirname
+      },
+      {
+        test: /\.scss\?p6$/,
+        loaders: ['style', 'css', 'postcss', 'px2rem?remUnit=37.5', 'sass'],
+        include: __dirname
       }
     ]
   }
