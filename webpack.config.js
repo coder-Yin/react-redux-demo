@@ -8,9 +8,10 @@ module.exports = {
     './index'
   ],
   output: {
+    publicPath: '/static/',
     path: path.join(__dirname, 'dist'),
     filename: 'bundle.js',
-    publicPath: '/static/'
+
   },
   plugins: [
     new webpack.optimize.OccurenceOrderPlugin(),
@@ -31,19 +32,21 @@ module.exports = {
         include: __dirname
       },
       {
-        test: /\.css?$/,
-        loaders: ['style', 'raw'],
+        test: /\.css$/,
+        loaders: ['style', 'css'],
         include: __dirname
       },
       {
         test: /\.scss$/,
-        loaders: ['style', 'css', 'postcss', 'px2rem?remUnit=32', 'sass'],
-        include: __dirname
+        loaders: ['style', 'css', 'px2rem', 'sass']
       },
       {
         test: /\.scss\?p6$/,
-        loaders: ['style', 'css', 'postcss', 'px2rem?remUnit=37.5', 'sass'],
-        include: __dirname
+        loaders: ['style', 'css', 'px2rem?remUnit=37.5', 'sass']
+      },
+      {
+        test: /\.scss\?p5$/,
+        loaders: ['style', 'css', 'px2rem?remUnit=32', 'sass']
       }
     ]
   }
