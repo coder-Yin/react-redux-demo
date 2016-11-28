@@ -11,10 +11,10 @@ var path = require('path');
 var fs = require('fs');
 var bodyParser = require('body-parser');
 var cors = require('cors');
-var config = require('./test/config');
+var config = require('./config');
 var app = express();
 
-var jsonFileBase = './test/mockup-data';
+var jsonFileBase = './data';
 function isFunction(obj) {
     return Object.prototype.toString.call(obj) == '[object Function]';
 }
@@ -26,7 +26,7 @@ function route(fileName) {
         if (isFunction(fn)) fn = fn(req);
         setTimeout(function() {
             jsonFromFile(res, fn);
-        }, 500);
+        }, 2000);
     };
 }
 
