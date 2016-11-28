@@ -1,0 +1,3 @@
+module.exports = {
+    gets: ['/students']
+}

@@ -9,7 +9,8 @@ export default class StudentList extends Component{
         return(
     		 	<div>
             {
-              isLoading ? <Loading /> :
+              isLoading ?
+              <Loading /> :
               <div className="container">
                 <table className="table">
       			      <caption>学生列表</caption>
@@ -36,7 +37,7 @@ export default class StudentList extends Component{
       			    </table>
               </div>
             }
-        		</div>
+        	</div>
 	    )
 
 	   return null;

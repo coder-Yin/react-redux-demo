@@ -6,6 +6,12 @@ export function mapStateToProps(state) {
 
   let { setStudentGenderType, getStudentList, setEnter, addStudent } = bindActions;
 
+  /**
+   * [filterStudentList 根据学生性别筛选列表数据]
+   * @param  {[Array]} list   [所有的学生列表数据]
+   * @param  {[String]} filter [学生性别]
+   * @return {[Array]}        [筛选后的数据]
+   */
   const filterStudentList = (list, filter) => {
 
     list = list ? list : [];
@@ -32,8 +38,7 @@ export function mapStateToProps(state) {
       addStudent
     },
     studentSearchInfo: {
-      setStudentGenderType,
-      studentGenderType
+      setStudentGenderType
     },
     studentListInfo:  {
       isLoading,
