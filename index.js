@@ -13,3 +13,11 @@ ReactDom.render(
     </Provider>,
     document.getElementById('root')
 );
+
+
+(function () {
+    var documentElement = document.documentElement;
+    //Use rem
+    documentElement.style.fontSize = documentElement.getBoundingClientRect().width / 10 + 'px';
+
+})();

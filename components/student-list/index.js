@@ -35,6 +35,7 @@ export default class StudentList extends Component{
           				 	}
       			      </tbody>
       			    </table>
+                <span className="icon"></span>
               </div>
             }
         	</div>

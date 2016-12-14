@@ -6,15 +6,17 @@
  */
 
 "use strict";
+
 var express = require('express');
 var path = require('path');
 var fs = require('fs');
 var bodyParser = require('body-parser');
 var cors = require('cors');
-var config = require('./config');
+var config = require('./mock-config');
 var app = express();
 
-var jsonFileBase = './data';
+var jsonFileBase = './mock-config/data';
+var postfix = 's';
 function isFunction(obj) {
     return Object.prototype.toString.call(obj) == '[object Function]';
 }
@@ -26,7 +28,7 @@ function route(fileName) {
         if (isFunction(fn)) fn = fn(req);
         setTimeout(function() {
             jsonFromFile(res, fn);
-        }, 2000);
+        }, 500);
     };
 }
 
@@ -41,15 +43,52 @@ function jsonFromFile(res, fileName) {
 }
 
 function gets(router, routes) {
-    console.log(routes);
     routes.forEach(function(r) {
-        var p = path.join(jsonFileBase, r.replace(/\/:[^\/]+(?=[\/$])/g, ''));
-        if (p[p.length - 1] == '/') p = p.substr(0, p.length - 1);
-        p += '.json';
-        console.log(p);
-        router.use(r, route(p));
+        var p;
+        var url;
+        if (typeof r == 'string') {
+            url = r;
+            p = path.join(jsonFileBase, r.replace(/\/:[^\/]+(?=[\/$])/g, ''));
+            if (p[p.length - 1] == '/') p = p.substr(0, p.length - 1);
+            p += '.json';
+        } else {
+            url = r.url;
+            p = path.join(jsonFileBase, r.response);
+        }
+        router.get(url, route(p));
     });
 }
+
+function posts(router, routes, method) {
+    if (!method) method = 'post';
+    routes.forEach(function(r) {
+        if (typeof r == 'string') {
+            router[method](r, function(req, res) {
+                console.log(req.body);
+                res.json({
+                    status: 0,
+                    message: '操作成功',
+                    data: null
+                })
+            });
+        } else {
+            router[method](r.url, function(req, res) {
+                console.log(req.body);
+                jsonFromFile(res, path.join(jsonFileBase, r.response));
+            });
+        }
+    })
+}
+
+function deletes(router, routes) {
+    posts(router, routes, 'delete');
+}
+
+function puts(router, routes) {
+    posts(router, routes, 'put');
+}
+
+var methods = {gets, posts, deletes, puts};
 
 app.use(function(req, res, next) {
 	console.log(req.originalUrl);
@@ -64,7 +103,9 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
 var router = express.Router();
-gets(router, config.gets);
+Object.getOwnPropertyNames(config).forEach(function(method) {
+    methods[method + postfix](router, config[method]);
+});
 
 app.use('/', router);
 
