@@ -1,6 +1,9 @@
 import React, {Component} from 'react';
+// import pureRender from "pure-render-decorator"
+import isNeededChange from '../../js/shouldComponentUpdate.js'
 
-export default class StudentAdd extends Component{
+
+class StudentAdd extends Component{
     // constructor(props){
     //     super(props);
     // }
@@ -17,10 +20,15 @@ export default class StudentAdd extends Component{
       }
     }
 
+    shouldComponentUpdate(nextProps, nextState) {
+      return isNeededChange(nextProps, nextState, this);
+    }
+
     render(){
+        console.log('StudentAdd render');
         return(
     		 	<div className="container bg-info pt10">
-    			 	 <form className="form-horizontal">
+    			 	 <div className="form-horizontal">
     				  <div className="form-group">
     				    <label htmlFor="stuNo" className="col-sm-2 control-label">学号：</label>
     				    <div className="col-sm-10">
@@ -47,9 +55,11 @@ export default class StudentAdd extends Component{
     				      <button type="submit" className="btn btn-primary" onClick={this.onAddStudent.bind(this)}>添 加</button>
     				    </div>
     				  </div>
-    				</form>
+    				</div>
         		</div>
 	    )
 
     }
 }
+
+export default StudentAdd;

@@ -13,9 +13,18 @@ export function getStudentList() {
     return model.getStudentList().then(response => {
 			let studentList = response.data.list;
       dispatch(setStudentList(studentList));
+
 			dispatch(setIsLoading(false));
+
     });
 	};
+}
+
+export function setStudentName(config) {
+	return {
+    type: actionTypes.SET_STUDENTNAME,
+    config
+  }
 }
 
 export function setStudentGenderType(config) {

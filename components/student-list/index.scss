@@ -7,6 +7,6 @@
 
 .icon{
   display: inline-block;
-  @include sprite($normal);
+  @include sprite($application);
   background-size: 100%;
 }

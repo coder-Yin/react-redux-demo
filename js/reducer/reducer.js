@@ -1,6 +1,8 @@
 import * as actionTypes from '../actionType';
+import Immutable from 'immutable';
 
 export function isLoading(state = true, action) {
+  // debugger;
   switch (action.type) {
     case actionTypes.SET_ISLOADING:
       return action.config;
@@ -9,16 +11,27 @@ export function isLoading(state = true, action) {
   }
 }
 
-export function studentList(state = [], action) {
+// state = Immutable.List([])
+
+export function studentList(state = Immutable.List([]), action) {
   switch (action.type) {
     case actionTypes.SET_STUDENTLIST:
-      return action.config;
+
+      //old
+      // return action.config;
+      //new
+      return Immutable.fromJS(action.config);
       break;
     case actionTypes.ADD_STUDENT:
-      let originList = state;
-      originList.push(action.config);
-      let newData = JSON.parse(JSON.stringify(originList))
-      return newData;
+
+      // //old
+      // state.push(action.config);
+      // let newState = JSON.parse(JSON.stringify(state));
+      // return state;
+
+      //new
+      let newState = state.push(Immutable.fromJS(action.config));
+      return newState;
       break;
     default:
         return state;

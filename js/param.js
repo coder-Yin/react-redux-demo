@@ -1,10 +1,19 @@
-import bindActions from './bindActions'
+import bindActions from './bindActions';
+// import Immutable from 'immutable';
+let { setStudentGenderType, getStudentList, setEnter, addStudent } = bindActions;
 
 export function mapStateToProps(state) {
 
-  let { studentList, studentGenderType, isLoading } = state;
+  // let studentList = state.get('studentList');
+  // let studentGenderType = state.get('studentGenderType');
+  // let isLoading = state.get('isLoading');
+  // debugger;
+  // console.log('-----------',Object.prototype.toString.call(state));
 
-  let { setStudentGenderType, getStudentList, setEnter, addStudent } = bindActions;
+  let {studentList, studentGenderType, isLoading} = state;
+
+  // debugger;
+
 
   /**
    * [filterStudentList 根据学生性别筛选列表数据]
@@ -15,16 +24,15 @@ export function mapStateToProps(state) {
   const filterStudentList = (list, filter) => {
 
     list = list ? list : [];
-
     switch (filter) {
       case '1':
         list = list.filter(item => {
-          return item.gender === 'male'
+          return item.get('gender') === 'male'
         });
         break;
       case '2':
         list = list.filter(item => {
-          return item.gender === 'female'
+          return item.get('gender') === 'female'
         });
         break;
     }
@@ -33,6 +41,7 @@ export function mapStateToProps(state) {
   }
 
   return {
+    isLoading,
     getStudentList,
     studentAddInfo: {
       addStudent
@@ -41,7 +50,6 @@ export function mapStateToProps(state) {
       setStudentGenderType
     },
     studentListInfo:  {
-      isLoading,
       studentList: filterStudentList(studentList, studentGenderType)
     }
   }

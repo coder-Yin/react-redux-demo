@@ -1,12 +1,19 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import isNeededChange from '../../js/shouldComponentUpdate.js'
+
 export default class StudentSearch extends Component {
 
     handleSelect(event) {
       let {setStudentGenderType } = this.props;
       setStudentGenderType(event.target.value);
     }
+    
+    shouldComponentUpdate(nextProps, nextState) {
+      return isNeededChange(nextProps, nextState, this);
+    }
 
     render() {
+      console.log('StudentSearch render');
       return(
           <div className="container pt10 mb10">
             <form>

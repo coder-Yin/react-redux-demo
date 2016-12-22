@@ -90,7 +90,7 @@ module.exports = {
       },
       {
         test: /\.scss\?p5$/,
-        loaders: ['style', 'css', 'px2rem?remUnit=32', 'sass']
+        loaders: ['style', 'css?modules&importLoaders=1&localIdentName=[path]_[name]__[local]___[hash:base64:5]&sourceMap', 'px2rem?remUnit=32', 'sass']
       },
       {
         test: /\.png$/,

@@ -1,16 +1,18 @@
 import React, {Component} from 'react';
 import './index.scss?p6';
-import Loading from '../loading';
+
+import isNeededChange from '../../js/shouldComponentUpdate.js'
 
 export default class StudentList extends Component{
 
+    shouldComponentUpdate(nextProps, nextState) {
+      return isNeededChange(nextProps, nextState, this);
+    }
+
     render(){
-    	  let {studentList, isLoading} = this.props;
+        console.log('StudentList render');
+    	  let {studentList} = this.props;
         return(
-    		 	<div>
-            {
-              isLoading ?
-              <Loading /> :
               <div className="container">
                 <table className="table">
       			      <caption>学生列表</caption>
@@ -27,9 +29,9 @@ export default class StudentList extends Component{
           	 			 		studentList.map((item, index) => {
           	 			 			return  <tr key={index}>
           							          <th scope="row">{index+1}</th>
-          							          <td>{item.stuNo}</td>
-          							          <td>{item.stuName}</td>
-          							          <td>{item.gender}</td>
+          							          <td>{item.get('stuNo')}</td>
+          							          <td>{item.get('stuName')}</td>
+          							          <td>{item.get('gender')}</td>
           							        </tr>
           	 			 		})
           				 	}
@@ -37,10 +39,21 @@ export default class StudentList extends Component{
       			    </table>
                 <span className="icon"></span>
               </div>
-            }
-        	</div>
 	    )
-
-	   return null;
     }
 }
+
+
+// <tbody>
+//   {
+//     studentList.map((item, index) => {
+//       return  <tr key={index}>
+//                 <th scope="row">{index+1}</th>
+//                 <td>{item.stuNo}</td>
+//                 <td>{item.stuName}</td>
+//                 <td>{item.gender}</td>
+//                 <td><a href="javascript: void(0);">update</a></td>
+//               </tr>
+//     })
+//   }
+// </tbody>

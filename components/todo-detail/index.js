@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import StudentSearch from '../student-search';
 import StudentAdd from '../student-add';
 import StudentList from '../student-list';
-// import StudentAnimate from '../student-animate';
+import isNeededChange from '../../js/shouldComponentUpdate.js'
+import Loading from '../loading';
 
 class TodoDetail extends Component {
 
@@ -11,13 +12,36 @@ class TodoDetail extends Component {
       getStudentList();
     }
 
+    shouldComponentUpdate(nextProps, nextState) {
+      return isNeededChange(nextProps, nextState, this);
+    }
+
+    // componentDidMount() {
+    //   console.log('TodoDetail ------- componentDidMount');
+    // }
+    //
+    // componentWillUpdate() {
+    //   console.log('TodoDetail ------- componentWillUpdate');
+    // }
+    //
+    // componentDidUpdate() {
+    //   console.log('TodoDetail ------- componentDidUpdate');
+    // }
+
     render() {
-      let { studentListInfo, studentSearchInfo, studentAddInfo } = this.props;
+      console.log('TodoDetail render');
+      let { studentListInfo, studentSearchInfo, studentAddInfo, isLoading} = this.props;
       return (
         <div>
-          <StudentSearch {...studentSearchInfo} />
-          <StudentAdd {...studentAddInfo} />
-          <StudentList {...studentListInfo} />
+        {
+          isLoading ?
+          <Loading /> :
+          <div>
+            <StudentSearch {...studentSearchInfo} />
+            <StudentAdd {...studentAddInfo} />
+            <StudentList {...studentListInfo} />
+          </div>
+        }
         </div>
       )
     }
